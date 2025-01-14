@@ -1,4 +1,4 @@
-### Preview
+### Preview Web App
 
 ![Demo App](/frontend/public/screenshot-for-readme.png)
 
