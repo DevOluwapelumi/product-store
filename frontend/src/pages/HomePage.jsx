@@ -15,15 +15,32 @@ const HomePage = () => {
 	return (
 		<Container maxW='container.xl' py={12}>
 			<VStack spacing={8}>
-				<Text
-					fontSize={"30"}
-					fontWeight={"bold"}
-					bgGradient={"linear(to-r, cyan.400, blue.500)"}
-					bgClip={"text"}
-					textAlign={"center"}
-				>
-					Current Products 🚀
-				</Text>
+			<Text
+  fontSize={{ base: "24px", md: "30px" }}
+  fontWeight="bold"
+  bgGradient="linear(to-r, cyan.400, blue.500)"
+  bgClip="text"
+  textAlign="center"
+  position="relative"
+  animation="floating 3s ease-in-out infinite"
+  textShadow="0px 4px 6px rgba(0, 0, 0, 0.3)"
+>
+  Current Products 🚀
+</Text>
+
+<style>
+{`
+  @keyframes floating {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+`}
+</style>
+
 
 				<SimpleGrid
 					columns={{

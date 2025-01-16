@@ -85,7 +85,8 @@ const ProductCard = ({ product }) => {
 			_hover={{ transform: "translateY(-5px)", shadow: "xl" }}
 			bg={bg}
 		>
-			<Image src={product.image} alt={product.name} h={48} w='full' objectFit='cover' />
+			<Image src={product.image} alt={product.name} h={60} w='full' objectFit='cover' />
+		
 
 			<Box p={4}>
 				<Heading as='h3' size='md' mb={2}>
@@ -107,49 +108,57 @@ const ProductCard = ({ product }) => {
 			</Box>
 
 			<Modal isOpen={isOpen} onClose={onClose}>
-				<ModalOverlay />
+  <ModalOverlay />
+  <ModalContent borderRadius="lg" boxShadow="lg" p={4}>
+    <ModalHeader fontSize="2xl" fontWeight="bold" textAlign="center" color="blue.600">
+      Update Product
+    </ModalHeader>
+    <ModalCloseButton />
+    <ModalBody>
+      <VStack spacing={6} align="stretch">
+        <Input
+          placeholder="Product Name"
+          name="name"
+          value={updatedProduct.name}
+          onChange={(e) => setUpdatedProduct({ ...updatedProduct, name: e.target.value })}
+          focusBorderColor="blue.500"
+          size="lg"
+        />
+        <Input
+          placeholder="Price"
+          name="price"
+          type="number"
+          value={updatedProduct.price}
+          onChange={(e) => setUpdatedProduct({ ...updatedProduct, price: e.target.value })}
+          focusBorderColor="blue.500"
+          size="lg"
+        />
+        <Input
+          placeholder="Image URL"
+          name="image"
+          value={updatedProduct.image}
+          onChange={(e) => setUpdatedProduct({ ...updatedProduct, image: e.target.value })}
+          focusBorderColor="blue.500"
+          size="lg"
+        />
+      </VStack>
+    </ModalBody>
+    <ModalFooter justifyContent="space-between">
+      <Button
+        colorScheme="blue"
+        size="lg"
+        px={6}
+        onClick={() => handleUpdateProduct(product._id, updatedProduct)}
+      >
+        Update
+      </Button>
+      <Button variant="outline" size="lg" px={6} onClick={onClose}>
+        Cancel
+      </Button>
+    </ModalFooter>
+  </ModalContent>
+</Modal>
 
-				<ModalContent>
-					<ModalHeader>Update Product</ModalHeader>
-					<ModalCloseButton />
-					<ModalBody>
-						<VStack spacing={4}>
-							<Input
-								placeholder='Product Name'
-								name='name'
-								value={updatedProduct.name}
-								onChange={(e) => setUpdatedProduct({ ...updatedProduct, name: e.target.value })}
-							/>
-							<Input
-								placeholder='Price'
-								name='price'
-								type='number'
-								value={updatedProduct.price}
-								onChange={(e) => setUpdatedProduct({ ...updatedProduct, price: e.target.value })}
-							/>
-							<Input
-								placeholder='Image URL'
-								name='image'
-								value={updatedProduct.image}
-								onChange={(e) => setUpdatedProduct({ ...updatedProduct, image: e.target.value })}
-							/>
-						</VStack>
-					</ModalBody>
-
-					<ModalFooter>
-						<Button
-							colorScheme='blue'
-							mr={3}
-							onClick={() => handleUpdateProduct(product._id, updatedProduct)}
-						>
-							Update
-						</Button>
-						<Button variant='ghost' onClick={onClose}>
-							Cancel
-						</Button>
-					</ModalFooter>
-				</ModalContent>
-			</Modal>
 		</Box>
 	);
 };
